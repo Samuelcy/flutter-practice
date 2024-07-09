@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../components.dart';
 
@@ -10,13 +12,49 @@ class LandingPageWeb extends StatefulWidget {
 }
 
 class _LandingPageWebState extends State<LandingPageWeb> {
+  urlLauncher(String imgPath, String url) {
+    return IconButton(
+      icon: SvgPicture.asset(imgPath, color: Colors.black, width: 35),
+      onPressed: () async {
+        await launchUrl(Uri.parse(url));
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var heightDevice = MediaQuery.of(context).size.height;
     var widthDevice = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        drawer: Drawer(),
+        drawer: Drawer(
+          backgroundColor: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 72.0,
+                backgroundColor: Colors.tealAccent,
+                child: CircleAvatar(
+                    radius: 70.0,
+                    backgroundColor: Colors.white,
+                    backgroundImage: AssetImage("assets/images.png")),
+              ),
+              SizedBox(height: 15.0),
+              SansBold("Samuel Han", 30.0),
+              SizedBox(height: 15.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  urlLauncher(
+                      "assets/instagram.svg", "https://www.instagram.com/"),
+                  urlLauncher("assets/twitter.svg", "https://www.twitter.com/"),
+                  urlLauncher("assets/github.svg", "https://www.github.com/"),
+                ],
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -102,7 +140,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset("assets/web.jpg", height: heightDevice / 1.7),
+                Image.asset("assets/web.jpg", height: widthDevice / 1.9),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
