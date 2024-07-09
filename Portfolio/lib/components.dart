@@ -79,3 +79,45 @@ class Sans extends StatelessWidget {
     );
   }
 }
+
+class TextForm extends StatelessWidget {
+  final heading;
+  final width;
+  final hitText;
+  final maxLine;
+  const TextForm(
+      {Key? key,
+      @required this.heading,
+      @required this.width,
+      @required this.hitText,
+      this.maxLine})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Sans(heading, 16.0),
+        SizedBox(height: 5),
+        SizedBox(
+          width: width,
+          child: TextFormField(
+            maxLines: maxLine == null ? null : maxLine, // if null, default 1
+            decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.teal),
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.tealAccent, width: 2),
+                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              hintText: hitText,
+              hintStyle: GoogleFonts.poppins(fontSize: 14),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

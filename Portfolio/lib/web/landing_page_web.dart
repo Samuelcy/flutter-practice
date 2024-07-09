@@ -13,6 +13,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
   @override
   Widget build(BuildContext context) {
     var heightDevice = MediaQuery.of(context).size.height;
+    var widthDevice = MediaQuery.of(context).size.width;
 
     return Scaffold(
         drawer: Drawer(),
@@ -210,7 +211,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                             Image.asset("assets/app.png",
                                 height: 200, width: 200),
                             SizedBox(height: 10),
-                            SansBold("Web Development", 15)
+                            SansBold("App Development", 15)
                           ],
                         ),
                       ),
@@ -237,7 +238,52 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                 )
               ],
             ),
-          ), // Third Prage
+          ), // Third Page
+          Container(
+              height: heightDevice,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SansBold("Contact Me", 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          TextForm(
+                              width: 350,
+                              heading: "First Name",
+                              hitText: "Please type your first name"),
+                          SizedBox(height: 15),
+                          TextForm(
+                              width: 350,
+                              heading: "Email",
+                              hitText: "Please enter your email address"),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          TextForm(
+                              width: 350,
+                              heading: "Last Name",
+                              hitText: "Please type your last name"),
+                          SizedBox(height: 15),
+                          TextForm(
+                              width: 350,
+                              heading: "Phone Number",
+                              hitText: "Please type your phone number"),
+                        ],
+                      ),
+                    ],
+                  ),
+                  TextForm(
+                    width: widthDevice / 1.5,
+                    heading: "Message",
+                    hitText: "Please type your message here",
+                    maxLine: 10,
+                  ),
+                ],
+              )),
         ]));
   }
 }
