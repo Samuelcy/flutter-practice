@@ -180,59 +180,20 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      shadowColor: Colors.tealAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset("assets/webL.png",
-                                height: 200, width: 200),
-                            SizedBox(height: 10),
-                            SansBold("Web Development", 15)
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                      imagePath: "assets/webL.png",
+                      text: "Web Development",
+                      fit: BoxFit.contain,
                     ),
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      shadowColor: Colors.tealAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset("assets/app.png",
-                                height: 200, width: 200),
-                            SizedBox(height: 10),
-                            SansBold("App Development", 15)
-                          ],
-                        ),
-                      ),
-                    ),
-                    Card(
-                      elevation: 30,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      shadowColor: Colors.tealAccent,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset("assets/firebase.png",
-                                height: 200, width: 200, fit: BoxFit.contain),
-                            SizedBox(height: 10),
-                            SansBold("Back-end development", 15)
-                          ],
-                        ),
-                      ),
+                    AnimatedCardWeb(
+                        imagePath: "assets/app.png",
+                        text: "App Development",
+                        fit: BoxFit.contain,
+                        reverse: true),
+                    AnimatedCardWeb(
+                      imagePath: "assets/firebase.png",
+                      text: "Back-end Development",
+                      fit: BoxFit.contain,
                     ),
                   ],
                 )
@@ -240,50 +201,62 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             ),
           ), // Third Page
           Container(
-              height: heightDevice,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SansBold("Contact Me", 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          TextForm(
-                              width: 350,
-                              heading: "First Name",
-                              hitText: "Please type your first name"),
-                          SizedBox(height: 15),
-                          TextForm(
-                              width: 350,
-                              heading: "Email",
-                              hitText: "Please enter your email address"),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          TextForm(
-                              width: 350,
-                              heading: "Last Name",
-                              hitText: "Please type your last name"),
-                          SizedBox(height: 15),
-                          TextForm(
-                              width: 350,
-                              heading: "Phone Number",
-                              hitText: "Please type your phone number"),
-                        ],
-                      ),
-                    ],
-                  ),
-                  TextForm(
-                    width: widthDevice / 1.5,
-                    heading: "Message",
-                    hitText: "Please type your message here",
-                    maxLine: 10,
-                  ),
-                ],
-              )),
+            height: heightDevice,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SansBold("Contact Me", 40.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        TextForm(
+                            width: 350.0,
+                            heading: "First Name",
+                            hintText: "Please type your first name"),
+                        SizedBox(height: 15),
+                        TextForm(
+                            width: 350.0,
+                            heading: "Email",
+                            hintText: "Please enter your email address"),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        TextForm(
+                            width: 350.0,
+                            heading: "Last Name",
+                            hintText: "Please type your last name"),
+                        SizedBox(height: 15),
+                        TextForm(
+                            width: 350.0,
+                            heading: "Phone Number",
+                            hintText: "Please type your phone number"),
+                      ],
+                    ),
+                  ],
+                ),
+                TextForm(
+                  width: widthDevice / 1.5,
+                  heading: "Message",
+                  hintText: "Please type your message here",
+                  maxLines: 10.0,
+                ),
+                MaterialButton(
+                  elevation: 20.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  height: 60.0,
+                  minWidth: 200.0,
+                  color: Colors.tealAccent,
+                  child: SansBold("Submit", 20.0),
+                  onPressed: () {},
+                )
+              ],
+            ),
+          ),
+          SizedBox(height: 20.0),
         ]));
   }
 }

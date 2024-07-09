@@ -31,7 +31,7 @@ class _TabsWebState extends State<TabsWeb> {
         duration: const Duration(milliseconds: 100),
         curve: Curves.elasticIn,
         style: isSelected
-            ? GoogleFonts.oswald(
+            ? GoogleFonts.roboto(
                 shadows: [
                     Shadow(
                       color: Colors.black,
@@ -43,7 +43,7 @@ class _TabsWebState extends State<TabsWeb> {
                 decoration: TextDecoration.underline,
                 decorationThickness: 2,
                 decorationColor: Colors.tealAccent)
-            : GoogleFonts.oswald(color: Colors.black, fontSize: 23.0),
+            : GoogleFonts.roboto(color: Colors.black, fontSize: 23.0),
         child: Text(widget.title),
       ),
     );
@@ -83,14 +83,14 @@ class Sans extends StatelessWidget {
 class TextForm extends StatelessWidget {
   final heading;
   final width;
-  final hitText;
-  final maxLine;
+  final hintText;
+  final maxLines;
   const TextForm(
       {Key? key,
       @required this.heading,
       @required this.width,
-      @required this.hitText,
-      this.maxLine})
+      @required this.hintText,
+      this.maxLines})
       : super(key: key);
 
   @override
@@ -99,25 +99,91 @@ class TextForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Sans(heading, 16.0),
-        SizedBox(height: 5),
+        SizedBox(height: 5.0),
         SizedBox(
           width: width,
           child: TextFormField(
-            maxLines: maxLine == null ? null : maxLine, // if null, default 1
+            maxLines: maxLines == null ? null : maxLines, // if null, default 1
             decoration: InputDecoration(
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.teal),
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
               ),
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.tealAccent, width: 2),
+                  borderSide: BorderSide(color: Colors.tealAccent, width: 2.0),
                   borderRadius: BorderRadius.all(Radius.circular(15.0))),
-              hintText: hitText,
-              hintStyle: GoogleFonts.poppins(fontSize: 14),
+              hintText: hintText,
+              hintStyle: GoogleFonts.poppins(fontSize: 14.0),
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class AnimatedCardWeb extends StatefulWidget {
+  final imagePath;
+  final text;
+  final fit;
+  final reverse;
+  const AnimatedCardWeb(
+      {super.key,
+      @required this.imagePath,
+      @required this.text,
+      this.fit,
+      this.reverse});
+
+  @override
+  State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
+}
+
+class _AnimatedCardWebState extends State<AnimatedCardWeb>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller =
+      AnimationController(vsync: this, duration: const Duration(seconds: 4))
+        ..repeat(reverse: true);
+
+  late Animation<Offset> _animation = Tween(
+    begin: widget.reverse == true ? Offset(0, 0.08) : Offset.zero,
+    end: widget.reverse == true ? Offset.zero : Offset(0, 0.08),
+  ).animate(_controller); // Properties attached to controller
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _animation,
+      child: Card(
+        elevation: 30,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            side: BorderSide(color: Colors.tealAccent)),
+        shadowColor: Colors.tealAccent,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(widget.imagePath,
+                  height: 200,
+                  width: 200,
+                  fit: widget.fit == null ? null : widget.fit),
+              SizedBox(height: 10),
+              SansBold(widget.text, 15)
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
