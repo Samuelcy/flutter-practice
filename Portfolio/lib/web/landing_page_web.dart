@@ -63,15 +63,15 @@ class _LandingPageWebState extends State<LandingPageWeb> {
           title: Row(
             children: [
               Spacer(flex: 3),
-              TabsWeb("Home"),
+              TabsWeb(title: "Home", route: '/'),
               Spacer(),
-              TabsWeb("Works"),
+              TabsWeb(title: "Works", route: '/works'),
               Spacer(),
-              TabsWeb("Blog"),
+              TabsWeb(title: "Blog", route: '/blog'),
               Spacer(),
-              TabsWeb("About"),
+              TabsWeb(title: "About", route: '/about'),
               Spacer(),
-              TabsWeb("Contact"),
+              TabsWeb(title: "Contact", route: '/contact'),
               Spacer(),
             ],
           ),
@@ -250,34 +250,34 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     Column(
                       children: [
                         TextForm(
-                            width: 350.0,
-                            heading: "First Name",
+                            containerWidth: 350.0,
+                            text: "First Name",
                             hintText: "Please type your first name"),
                         SizedBox(height: 15),
                         TextForm(
-                            width: 350.0,
-                            heading: "Email",
+                            containerWidth: 350.0,
+                            text: "Email",
                             hintText: "Please enter your email address"),
                       ],
                     ),
                     Column(
                       children: [
                         TextForm(
-                            width: 350.0,
-                            heading: "Last Name",
+                            containerWidth: 350.0,
+                            text: "Last Name",
                             hintText: "Please type your last name"),
                         SizedBox(height: 15),
                         TextForm(
-                            width: 350.0,
-                            heading: "Phone Number",
+                            containerWidth: 350.0,
+                            text: "Phone Number",
                             hintText: "Please type your phone number"),
                       ],
                     ),
                   ],
                 ),
                 TextForm(
-                  width: widthDevice / 1.5,
-                  heading: "Message",
+                  containerWidth: widthDevice / 1.5,
+                  text: "Message",
                   hintText: "Please type your message here",
                   maxLines: 10.0,
                 ),
