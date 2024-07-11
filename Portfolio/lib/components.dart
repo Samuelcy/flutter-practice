@@ -172,7 +172,7 @@ class AnimatedCardWeb extends StatefulWidget {
   const AnimatedCardWeb(
       {super.key,
       @required this.imagePath,
-      @required this.text,
+      this.text,
       this.fit,
       this.reverse,
       this.height,
@@ -219,7 +219,7 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb>
                   width: widget.width == null ? 200.0 : widget.width,
                   fit: widget.fit == null ? null : widget.fit),
               SizedBox(height: 10),
-              SansBold(widget.text, 15)
+              widget.text == null ? SizedBox() : SansBold(widget.text, 15)
             ],
           ),
         ),
@@ -227,3 +227,17 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb>
     );
   }
 }
+
+// class AnimatedCardMobile extends StatefulWidget {
+//   const AnimatedCardMobile({super.key});
+//
+//   @override
+//   State<AnimatedCardMobile> createState() => _AnimatedCardMobileState();
+// }
+//
+// class _AnimatedCardMobileState extends State<AnimatedCardMobile> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+// }
