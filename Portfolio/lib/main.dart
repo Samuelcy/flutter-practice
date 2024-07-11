@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-import 'mobile/routes.dart';
+import 'routes.dart';
 
 void main() {
   setPathUrlStrategy();
