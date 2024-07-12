@@ -241,3 +241,29 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb>
 //     return const Placeholder();
 //   }
 // }
+
+class AbelCustom extends StatelessWidget {
+  final text;
+  final size;
+  final color;
+  final fontWeight;
+
+  const AbelCustom(
+      {Key? key,
+      @required this.text,
+      @required this.size,
+      this.color,
+      this.fontWeight})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.abel(
+          fontSize: size,
+          color: color == null ? Colors.black : color,
+          fontWeight: fontWeight == null ? FontWeight.normal : fontWeight),
+    );
+  }
+}
